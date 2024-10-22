@@ -194,7 +194,7 @@ export default {
     async searchPerson(){
       const personID = this.searchId;
       if (!personID) {
-        alert('Bitte geben Sie eine ID ein.');
+        alert("Bitte geben Sie eine ID ein.");
         return;
       }
       try{
@@ -206,14 +206,14 @@ export default {
         this.updateform.hobbies = this.searchedPerson.hobbies;
       } catch(error){
         this.searchedPerson = null;
-        alert(`Fehler: ${error.response?.data?.error || 'Etwas ist schief gelaufen.'}`)
+        alert(`Fehler: ${error.response?.data?.error}`)
       }
     },
 
     async deletePerson(){
       const personID = this.deleteId;
       if (!personID) {
-        alert('Bitte geben Sie eine ID ein.');
+        alert("Bitte geben Sie eine ID ein.");
         return;
       }
       try{
@@ -222,14 +222,14 @@ export default {
         alert(`Person mit ID ${personID} erfolgreich gelöscht`)
         this.deleteId = "";
       } catch(error){
-        alert(`Fehler: ${error.response?.data?.error || 'Etwas ist schief gelaufen.'}`)
+        alert(`Fehler: ${error.response?.data?.error}`)
       }
     },
 
     async updatePerson(){
       const personID = this.searchId;
       if (!personID) {
-        alert('Bitte geben Sie eine ID ein.');
+        alert("Bitte geben Sie eine ID ein.");
         return;
       }
       try {
@@ -240,14 +240,14 @@ export default {
           hobbies: this.updateform.hobbies
         };
         const response = await axios.put(`http://localhost:8086/person/${personID}`, payload);
-        console.log('Response:', response.data);
+        console.log("Response:", response.data);
         this.clearUpdateForm();
         this.searchedPerson = null;
         this.searchId = "";
         alert(`Person mit id: ${personID} erfolgreich bearbeitet`)
         this.fetchPersons();
       } catch (error) {
-        alert(`Fehler: ${error.response?.data?.error || 'Etwas ist schief gelaufen.'}`)
+        alert(`Fehler: ${error.response?.data?.error}`)
       }
     },
     
@@ -282,15 +282,15 @@ export default {
           hobbies: this.form.hobbies
         };
 
-        const response = await axios.post('http://localhost:8086/person', payload);
+        const response = await axios.post("http://localhost:8086/person", payload);
 
-        console.log('Response:', response.data);
+        console.log("Response:", response.data);
         this.clearForm();
         this.fetchPersons();
-        alert('Person erfolgreich hinzugefügt!');
+        alert("Person erfolgreich hinzugefügt!");
       } catch (error) {
-        console.error('Fehler beim Hinzufügen der Person:', error.response?.data || error.message);
-        alert(`Fehler: ${error.response?.data?.error || 'Etwas ist schief gelaufen.'}`);
+        console.error("Fehler beim Hinzufügen der Person:", error.response?.data || error.message);
+        alert(`Fehler: ${error.response?.data?.error}`);
       }
     },
 
@@ -309,12 +309,12 @@ export default {
 
     async fetchPersons() {
       try {
-        const response = await axios.get('http://localhost:8086/persons');
+        const response = await axios.get("http://localhost:8086/persons");
         this.persons = response.data;
         console.log(this.persons)
       } catch (error) {
-        console.error('Fehler beim Laden der Personen:', error.response?.data || error.message);
-        alert('Fehler beim Laden der Personen.');
+        console.error("Fehler beim Laden der Personen:", error.response?.data || error.message);
+        alert("Fehler beim Laden der Personen.");
       }
     }
   },
